@@ -1,9 +1,12 @@
+import numpy as np
+
 class Perceptron:
   def __init__(self,eta, epochs):
     self.weights = np.random.randn(3) * 1e-4
     print(f"initial weights before training : {self.weights}")
     self.eta = eta
     self.epochs = epochs
+
 
   def activationFunction(self,inputs,weights):
     z=np.dot(inputs, weights) # z = W1.x1 ..... = W * X
@@ -31,9 +34,11 @@ class Perceptron:
       print(f"updated weights after epochs : \n{epoch}/{self.epochs} : {self.weights}")
       print("####"*10)
 
+
   def predict(self, X):
     X_with_bias = np.c_[X, -np.ones((len(X),1))]
     return self.activationFunction(X_with_bias, self.weights)
+
 
   def total_loss(self):
     total_loss = np.sum(self.error)
