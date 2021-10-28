@@ -8,6 +8,14 @@ import os
 plt.style.use("fivethirtyeight") #This is the style of graphs
 
 def prepare_data(df):
+  """It is used to seperate dependent and independent features
+
+  Args:
+      df (pd.DataFrame): It as the pandas Dataframe
+
+  Returns:
+      tuple : It returns the tuples of Dependent and Independent Variables
+  """
   X = df.drop("y", axis=1)
   y = df["y"]
   return X, y
