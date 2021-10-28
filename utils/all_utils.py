@@ -11,7 +11,7 @@ def prepare_data(df):
   """It is used to seperate dependent and independent features
 
   Args:
-      df (pd.DataFrame): It as the pandas Dataframe
+      df (pd.DataFrame): It is the pandas Dataframe
 
   Returns:
       tuple : It returns the tuples of Dependent and Independent Variables
@@ -21,12 +21,25 @@ def prepare_data(df):
   return X, y
 
 def save_model(model, filename):
-  model_dir = "models"
-  os.makedirs(model_dir, exist_ok=True) #only create if model_dir does not exists
-  filePath = os.path.join(model_dir, filename) #model/filename
-  joblib.dump(model, filePath)
+    """This saves the trained model     
+
+    Args:
+        model (python object): trained model
+        filename (str): path to save the trained model
+    """
+    model_dir = "models"
+    os.makedirs(model_dir, exist_ok=True) #only create if model_dir does not exists
+    filePath = os.path.join(model_dir, filename) #model/filename
+    joblib.dump(model, filePath)
 
 def save_plot(df, file_name, model):
+    """This saves the plots generated
+
+    Args:
+        df (pd.DataFrame): its a dataframe
+        file_name (str): its path to save the plot
+        model (python object): trained model
+    """
     def _create_base_plot(df):
         df.plot(kind="scatter", x="x1", y="x2", c="y", s=100, cmap="winter")
         plt.axhline(y=0, color="black", linestyle="--", linewidth=1)
