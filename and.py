@@ -2,11 +2,12 @@ from utils.all_utils import save_model, save_plot
 from utils.models import Perceptron
 from utils.all_utils import prepare_data
 import pandas as pd
+import logging
 
 def main(data, eta, epochs, filename, plotfileName):
     
     df = pd.DataFrame(data)
-    print(df)
+    logging.info(f"This is the actual dataframe{df}")
     X,y = prepare_data(df)
 
     model = Perceptron(eta=eta, epochs=epochs)
@@ -27,5 +28,9 @@ if __name__ == '__main__': # entry point
 
     ETA = 0.3 # 0 and 1
     EPOCHS = 10
-
-    main(data=AND, eta=ETA, epochs=EPOCHS, filename="and.model", plotfileName="and.png")
+    try :
+        logging.info(">>>>>>>> Starting the training <<<<<<<")
+        main(data=AND, eta=ETA, epochs=EPOCHS, filename="and.model", plotfileName="and.png")
+        logging.info(">>>>>>>> training completed successfully <<<<<<<<")
+    except Exception as e:
+        logging.exception(e)
